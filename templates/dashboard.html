@@ -12,7 +12,7 @@
         <form method="POST" action="/">
             <label for="recipient">Recipient Email:</label>
             <input type="email" id="recipient" name="recipient" required><br><br>
-            <input type="submit" value="Generate Pixel">
+            <input type="submit" value="Create Pixel">
         </form>
     </section>
     
@@ -20,6 +20,11 @@
     <section class="pixel-data-section">
         <div class="header">
             <h2>Pixel ID: {{ pixel_id }}</h2>
+            <form method="POST" action="{{ url_for('update_pixel_notes', pixel_id=pixel_id) }}">
+                <input type="text" id="pixel_id" name="pixel_id" value="{{ pixel_id }}" hidden>
+                <input type="text" id="notes" name="notes" value="{{ pixel_data[0][3] }}" placeholder="Edit notes">
+                <input type="submit" value="Save Notes">
+            </form>
             <form method="POST" action="{{ url_for('delete_pixel', pixel_id=pixel_id) }}">
                 <input type="submit" value="Delete Pixel">
             </form>
@@ -30,7 +35,8 @@
                 <tr>
                     <th>Email Recipient</th>
                     <th>Last Accessed</th>
-                    <th>Access Count</th>  <!-- New column for access count -->
+                    <th>Access Count</th>
+                    <th>Notes</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,7 +44,8 @@
                     <tr>
                         <td>{{ item[0] }}</td>
                         <td>{{ item[1] }}</td>
-                        <td>{{ item[2] }}</td>  <!-- Display the access count -->
+                        <td>{{ item[2] }}</td>
+                        <td>{{ item[3] }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

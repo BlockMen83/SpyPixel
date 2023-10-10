@@ -8,7 +8,8 @@ CREATE TABLE IF NOT EXISTS pixels (
     id TEXT PRIMARY KEY,
     recipient TEXT,
     access_time TIMESTAMP,
-    counter INTEGER
+    counter INTEGER,
+    notes TEXT  -- Add a new column for notes
 )
 ''')
 
